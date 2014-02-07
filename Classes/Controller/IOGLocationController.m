@@ -28,6 +28,9 @@ static IOGLocationController *_sharedController;
     if (self) {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        [self.locationManager startUpdatingLocation];
     }
     
     return self;
@@ -43,6 +46,15 @@ static IOGLocationController *_sharedController;
     
     return mockLocation;
 }
+
+- (CLLocation*) currentLocation;
+{
+    CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude longitude:self.locationManager.location.coordinate.longitude];
+    
+    return mockLocation;
+
+}
+
 
 /*
  *  locationManager:didUpdateToLocation:fromLocation:
