@@ -18,6 +18,8 @@
 
 - (CLLocation*) lastLocation;
 
+- (CLLocation*) currentLocation;
+
 + (IOGLocationController*) sharedController;
 
 @end
